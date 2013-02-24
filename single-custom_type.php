@@ -50,7 +50,14 @@ single-bookmarks.php
 					    </article> <!-- end article -->
 					
 					    <?php endwhile; ?>			
-					
+						
+					       <nav class="wp-prev-next">
+								<ul class="clearfix">
+							   		<li class="next-link"><?php next_post_link( '&laquo; %link' ); ?></li>
+							    	<li class="prev-link"><?php previous_post_link( '%link &raquo;' ); ?></li>
+								</ul>
+					    	</nav>
+					        
 					    <?php else : ?>
 					
         					<article id="post-not-found" class="hentry clearfix">
