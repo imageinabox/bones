@@ -121,8 +121,8 @@ you like.
 */
 
 // Custom Backend Footer
-function bones_custom_admin_footer() {
-	_e('<span id="footer-thankyou">Developed by <a href="http://yoursite.com" target="_blank">Your Site Name</a></span>. Built using <a href="http://themble.com/bones" target="_blank">Bones</a>.', 'bonestheme');
+function bones_custom_admin_footer( $content ) {
+	return $content . __(' <span id="footer-thankyou">Developed by <a href="http://yoursite.com" target="_blank">Your Site Name</a></span>. Built using <a href="http://themble.com/bones" target="_blank">Bones</a>.', 'bonestheme');
 }
 
 // adding it to the admin area
