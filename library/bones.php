@@ -63,9 +63,9 @@ need.
 
 function bones_head_cleanup() {
 	// category feeds
-	// remove_action( 'wp_head', 'feed_links_extra', 3 );
+	remove_action( 'wp_head', 'feed_links_extra', 3 );
 	// post and comment feeds
-	// remove_action( 'wp_head', 'feed_links', 2 );
+	remove_action( 'wp_head', 'feed_links', 2 );
 	// EditURI link
 	remove_action( 'wp_head', 'rsd_link' );
 	// windows live writer
@@ -80,10 +80,10 @@ function bones_head_cleanup() {
 	remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0 );
 	// WP version
 	remove_action( 'wp_head', 'wp_generator' );
-  // remove WP version from css
-  add_filter( 'style_loader_src', 'bones_remove_wp_ver_css_js', 9999 );
-  // remove Wp version from scripts
-  add_filter( 'script_loader_src', 'bones_remove_wp_ver_css_js', 9999 );
+	// remove WP version from css
+	add_filter( 'style_loader_src', 'bones_remove_wp_ver_css_js', 9999 );
+	// remove Wp version from scripts
+	add_filter( 'script_loader_src', 'bones_remove_wp_ver_css_js', 9999 );
 
 } /* end bones head cleanup */
 
@@ -136,9 +136,9 @@ function bones_scripts_and_styles() {
     wp_register_style( 'bones-ie-only', get_stylesheet_directory_uri() . '/library/css/ie.css', array(), '' );
 
     // comment reply script for threaded comments
-    if ( is_singular() AND comments_open() AND (get_option('thread_comments') == 1)) {
-      wp_enqueue_script( 'comment-reply' );
-    }
+    //if ( is_singular() AND comments_open() AND (get_option('thread_comments') == 1)) {
+    //	wp_enqueue_script( 'comment-reply' );
+    //}
 
     //adding scripts file in the footer
     wp_register_script( 'bones-js', get_stylesheet_directory_uri() . '/library/js/scripts.js', array( 'jquery' ), '', true );
@@ -146,7 +146,7 @@ function bones_scripts_and_styles() {
     // enqueue styles and scripts
     wp_enqueue_script( 'bones-modernizr' );
     wp_enqueue_style( 'bones-stylesheet' );
-    wp_enqueue_style('bones-ie-only');
+    wp_enqueue_style( 'bones-ie-only' );
     /*
     I recommend using a plugin to call jQuery
     using the google cdn. That way it stays cached
@@ -174,12 +174,13 @@ THEME SUPPORT
 function bones_theme_support() {
 
 	// wp thumbnails (sizes handled in functions.php)
-	add_theme_support('post-thumbnails');
+	add_theme_support( 'post-thumbnails' );
 
 	// default thumb size
 	set_post_thumbnail_size(125, 125, true);
 
 	// wp custom background (thx to @bransonwerner for update)
+	/*
 	add_theme_support( 'custom-background',
 	    array(
 	    'default-image' => '',  // background image default
@@ -189,13 +190,17 @@ function bones_theme_support() {
 	    'admin-preview-callback' => ''
 	    )
 	);
-
+	*/
+	
+	add_theme_support( 'woocommerce' );
+	
 	// rss thingy
-	add_theme_support('automatic-feed-links');
+	add_theme_support( 'automatic-feed-links' );
 
 	// to add header image support go here: http://themble.com/support/adding-header-background-image-support/
 
 	// adding post format support
+	/*
 	add_theme_support( 'post-formats',
 		array(
 			'aside',             // title less blurb
@@ -209,10 +214,10 @@ function bones_theme_support() {
 			'chat'               // chat transcript
 		)
 	);
+	*/
 
 	// wp menus
 	add_theme_support( 'menus' );
-
 	// registering wp3+ menus
 	register_nav_menus(
 		array(
